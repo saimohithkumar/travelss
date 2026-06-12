@@ -1,0 +1,6 @@
+{
+  "name": "Sri Ganesha Travels",
+  "description": "Premium cab rental service in Tirupati offering complete travel solutions, fleet details, and instant booking via WhatsApp.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
