@@ -44,12 +44,39 @@ export default function BookingForm({
     fullName: '',
     mobileNumber: '',
     pickupDate: '',
-    pickupTime: '',
+    pickupTime: '08:00 AM',
     returnDate: '',
     destination: '',
     pickupLocation: '',
     specialRequests: ''
   });
+
+  // Local state for pickup hour, minute, and period selection
+  const [timeHour, setTimeHour] = useState('08');
+  const [timeMinute, setTimeMinute] = useState('00');
+  const [timePeriod, setTimePeriod] = useState('AM');
+
+  const handleTimeComponentChange = (type: 'hour' | 'minute' | 'period', value: string) => {
+    let nextHour = timeHour;
+    let nextMinute = timeMinute;
+    let nextPeriod = timePeriod;
+
+    if (type === 'hour') {
+      setTimeHour(value);
+      nextHour = value;
+    } else if (type === 'minute') {
+      setTimeMinute(value);
+      nextMinute = value;
+    } else if (type === 'period') {
+      setTimePeriod(value);
+      nextPeriod = value;
+    }
+
+    setFormData(prev => ({
+      ...prev,
+      pickupTime: `${nextHour}:${nextMinute} ${nextPeriod}`
+    }));
+  };
 
   const [activePlaceState, setActivePlaceState] = useState<string>('ALL');
   const [searchTerm, setSearchTerm] = useState<string>('');
@@ -386,6 +413,7 @@ Dear *${details.fullName}*, thank you for choosing Sri Ganesha Travels for your 
                     <option value="local-sightseeing">Tirupati Local Temple Sightseeing</option>
                     <option value="one-way">One-Way Drop Trip</option>
                     <option value="round-trip">Outstation Round-Trip Yatra</option>
+                    <option value="custom-south-india">Custom South India Tour (Multi-City)</option>
                   </select>
                 </div>
               </div>
@@ -409,15 +437,42 @@ Dear *${details.fullName}*, thank you for choosing Sri Ganesha Travels for your 
 
                 <div className="space-y-1.5">
                   <label className="text-xs font-bold uppercase tracking-wider text-royal-950 flex items-center gap-1">
-                    Setup Time
+                    Setup Time <span className="text-red-500">*</span>
                   </label>
-                  <input 
-                    type="time" 
-                    name="pickupTime"
-                    value={formData.pickupTime}
-                    onChange={handleInputChange}
-                    className="w-full bg-slate-50 border border-slate-200 text-slate-800 rounded-xl px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-amber-500/20 transition-all"
-                  />
+                  <div className="flex gap-1.5">
+                    {/* Hour Select */}
+                    <select
+                      name="pickupHour"
+                      value={timeHour}
+                      onChange={(e) => handleTimeComponentChange('hour', e.target.value)}
+                      className="flex-1 bg-slate-50 border border-slate-200 text-slate-800 rounded-xl px-2 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-amber-500/20 transition-all cursor-pointer"
+                    >
+                      {['01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12'].map(h => (
+                        <option key={h} value={h}>{h}</option>
+                      ))}
+                    </select>
+                    {/* Minute Select */}
+                    <select
+                      name="pickupMinute"
+                      value={timeMinute}
+                      onChange={(e) => handleTimeComponentChange('minute', e.target.value)}
+                      className="flex-1 bg-slate-50 border border-slate-200 text-slate-800 rounded-xl px-2 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-amber-500/20 transition-all cursor-pointer"
+                    >
+                      {['00', '15', '30', '45'].map(m => (
+                        <option key={m} value={m}>{m} min</option>
+                      ))}
+                    </select>
+                    {/* Period Select */}
+                    <select
+                      name="pickupPeriod"
+                      value={timePeriod}
+                      onChange={(e) => handleTimeComponentChange('period', e.target.value)}
+                      className="w-20 bg-slate-50 border border-slate-200 text-slate-800 rounded-xl px-2 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-amber-500/20 transition-all cursor-pointer"
+                    >
+                      <option value="AM">AM</option>
+                      <option value="PM">PM</option>
+                    </select>
+                  </div>
                 </div>
 
                 <div className="space-y-1.5">
@@ -660,24 +715,54 @@ Dear *${details.fullName}*, thank you for choosing Sri Ganesha Travels for your 
                 </p>
               </div>
 
-              {/* Pricing Estimate Card Details */}
-              <div className="bg-royal-900/60 p-4 rounded-2xl border border-white/5 space-y-3.5">
-                <div className="flex justify-between items-center text-xs pb-2 border-b border-white/5">
+               {/* Pricing Estimate Card Details */}
+              <div className="bg-royal-900/60 p-5 rounded-2xl border border-white/5 space-y-3.5">
+                <div className="flex justify-between items-center text-xs pb-2 border-b border-white/10">
+                  <span className="text-gray-400">Selected Style:</span>
+                  <span className="text-amber-300 font-bold text-xs uppercase tracking-wider text-right">
+                    {selectedTripType === 'tirumala-darshan' && 'Tirumala Special Darshan'}
+                    {selectedTripType === 'local-sightseeing' && 'Tirupati Local Sightseeing'}
+                    {selectedTripType === 'one-way' && 'One-Way Drop Trip'}
+                    {selectedTripType === 'round-trip' && 'Outstation Round-Trip'}
+                    {selectedTripType === 'custom-south-india' && 'Custom South India Tour'}
+                    {!['tirumala-darshan', 'local-sightseeing', 'one-way', 'round-trip', 'custom-south-india'].includes(selectedTripType) && selectedTripType}
+                  </span>
+                </div>
+                <div className="flex justify-between items-center text-xs pb-2 border-b border-white/10">
+                  <span className="text-gray-400">Tarrif Format:</span>
+                  <span className="text-white font-medium text-right text-xs">
+                    {selectedTripType === 'tirumala-darshan' && 'Special Package Rate'}
+                    {selectedTripType === 'local-sightseeing' && 'Flat Day Package'}
+                    {selectedTripType === 'one-way' && 'Point-to-Point Tariff'}
+                    {selectedTripType === 'round-trip' && 'Standard outstation km-rate'}
+                    {selectedTripType === 'custom-south-india' && 'Multi-City Package Rate'}
+                    {!['tirumala-darshan', 'local-sightseeing', 'one-way', 'round-trip', 'custom-south-india'].includes(selectedTripType) && 'Unified Day Fare'}
+                  </span>
+                </div>
+                <div className="flex justify-between items-center text-xs pb-2 border-b border-white/10">
                   <span className="text-gray-400">Base Price:</span>
                   <span className="text-amber-400 font-bold text-xs uppercase tracking-wider">
                     Pricing on Request
                   </span>
                 </div>
-                <div className="flex justify-between items-center text-xs pb-2 border-b border-white/5">
+                <div className="flex justify-between items-center text-xs pb-2 border-b border-white/11">
                   <span className="text-gray-400">Driver Allowance:</span>
                   <span className="text-white font-medium">Included in quote</span>
                 </div>
-                <div className="flex justify-between items-center text-xs pb-2 border-b border-white/5">
+                <div className="flex justify-between items-center text-xs pb-2 border-b border-white/11">
                   <span className="text-gray-400">Local Tolls &amp; Parking:</span>
                   <span className="text-white font-medium">As per actuals / Extra</span>
                 </div>
-                <div className="flex justify-between items-center text-xs">
-                  <span className="text-gray-400 font-bold">Estimated Cost:</span>
+                {formData.destination && (
+                  <div className="flex flex-col text-xs pb-2 border-b border-white/11 gap-1 text-left">
+                    <span className="text-gray-400">Selected Destinations:</span>
+                    <span className="text-emerald-400 font-bold text-[11px] leading-relaxed">
+                      {formData.destination}
+                    </span>
+                  </div>
+                )}
+                <div className="flex justify-between items-center text-xs pt-1">
+                  <span className="text-gray-300 font-bold">Estimated Cost:</span>
                   <span className="font-display font-extrabold text-amber-400 text-sm uppercase tracking-wide">
                     Best rates guaranteed
                   </span>
