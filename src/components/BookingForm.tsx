@@ -207,6 +207,16 @@ Dear *${details.fullName}*, thank you for choosing Sri Ganesha Travels for your 
             const encodedMessage = encodeURIComponent(message);
             const waUrl = `https://wa.me/${CONTACT_INFO.whatsappNumber}?text=${encodedMessage}`;
             window.open(waUrl, '_blank');
+
+            // Send booking successful confirmation message to the client
+            const cleanNum = cleanPhoneNumber(formData.mobileNumber || '');
+            if (cleanNum) {
+              setTimeout(() => {
+                const encodedSuccess = encodeURIComponent(generateSuccessMessage(formData));
+                const waUrlSuccess = `https://wa.me/${cleanNum}?text=${encodedSuccess}`;
+                window.open(waUrlSuccess, '_blank');
+              }, 1200); // Slight delay to circumvent browser pop-up block policies
+            }
           }, 800);
         }
       }, 650);
@@ -605,7 +615,7 @@ Dear *${details.fullName}*, thank you for choosing Sri Ganesha Travels for your 
 
             {/* Success Dialogue banner */}
             {submitSuccess && !isSubmitting && (
-              <div className="mt-6 p-6 rounded-2xl bg-emerald-500/10 border border-emerald-500/20 text-emerald-850 space-y-4 animate-fadeIn">
+              <div className="mt-6 p-6 rounded-2xl bg-emerald-500/10 border border-emerald-500/20 text-emerald-850 space-y-2 animate-fadeIn">
                 <div className="flex items-center gap-2.5">
                   <CheckCircle className="w-6 h-6 text-emerald-600 shrink-0" />
                   <div>
@@ -613,56 +623,8 @@ Dear *${details.fullName}*, thank you for choosing Sri Ganesha Travels for your 
                     <p className="text-[11px] text-emerald-800">For passenger {formData.fullName}</p>
                   </div>
                 </div>
-
-                <div className="p-4 bg-white/80 rounded-xl space-y-3.5 border border-emerald-500/10 text-xs text-left">
-                  <p className="font-semibold text-emerald-900 leading-normal">
-                    We've compiled your travel details. Send them over to finish your reservation:
-                  </p>
-
-                  <div className="space-y-3 pt-1">
-                    {/* Step 1: Send to Staff */}
-                    <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 p-3 bg-emerald-50/70 border border-emerald-200/50 rounded-xl">
-                      <div className="space-y-0.5">
-                        <p className="font-bold text-slate-800 text-[11px] uppercase tracking-wider">Step 1: Send Booking Request to Staff</p>
-                        <p className="text-slate-600 text-[11px]">Send dispatch data to Sri Ganesha travels (+91 83742 33802)</p>
-                      </div>
-                      <button
-                        type="button"
-                        onClick={() => {
-                          const encoded = encodeURIComponent(generateBookingMessage(formData));
-                          window.open(`https://wa.me/${CONTACT_INFO.whatsappNumber}?text=${encoded}`, '_blank');
-                        }}
-                        className="bg-emerald-600 hover:bg-emerald-700 text-white text-[11px] font-extrabold px-3.5 py-2 rounded-lg shadow-sm transition-all whitespace-nowrap cursor-pointer flex items-center justify-center gap-1.5 focus:ring-2 focus:ring-emerald-500/20"
-                      >
-                        <Send className="w-3.5 h-3.5" />
-                        Send to Owner
-                      </button>
-                    </div>
-
-                    {/* Step 2: Send Success confirmation to client */}
-                    <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 p-3 bg-amber-50/60 border border-amber-200/50 rounded-xl">
-                      <div className="space-y-0.5">
-                        <p className="font-bold text-slate-800 text-[11px] uppercase tracking-wider">Step 2: Send Success Ticket to Client</p>
-                        <p className="text-slate-600 text-[11px]">Send copy of the final booking confirmation to your number: {formData.mobileNumber}</p>
-                      </div>
-                      <button
-                        type="button"
-                        onClick={() => {
-                          const cleanNum = cleanPhoneNumber(formData.mobileNumber || '');
-                          const encodedSuccess = encodeURIComponent(generateSuccessMessage(formData));
-                          window.open(`https://wa.me/${cleanNum}?text=${encodedSuccess}`, '_blank');
-                        }}
-                        className="bg-royal-900 hover:bg-royal-950 text-white text-[11px] font-extrabold px-3.5 py-2 rounded-lg shadow-sm transition-all whitespace-nowrap cursor-pointer flex items-center justify-center gap-1.5 focus:ring-2 focus:ring-royal-950/20"
-                      >
-                        <MessageSquare className="w-3.5 h-3.5" />
-                        Send to Client
-                      </button>
-                    </div>
-                  </div>
-                </div>
-
-                <p className="text-[11px] text-emerald-800 leading-relaxed font-medium">
-                  💡 <strong>Did pop-ups get blocked?</strong> If the secure redirection did not trigger automatically on press, utilize the buttons above to request both messaging paths directly.
+                <p className="text-xs text-emerald-900 leading-relaxed pt-1.5">
+                  Thank you for planning your journey with Sri Ganesha Travels. We have initiated the WhatsApp redirections automatically to submit your request and deliver your confirmation ticket. Please check your active WhatsApp chats!
                 </p>
               </div>
             )}
