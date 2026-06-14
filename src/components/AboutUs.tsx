@@ -185,6 +185,91 @@ export default function AboutUs() {
           </div>
         </div>
 
+        {/* Localized SEO Rich Content: Popular Tirupati Cab Routes */}
+        <div className="pt-12 border-t border-slate-100 space-y-6">
+          <div className="max-w-3xl">
+            <h3 className="font-display text-xl sm:text-2xl font-extrabold text-royal-950">
+              Popular Routes &amp; Cab Fares Guideline in Tirupati
+            </h3>
+            <p className="text-gray-600 text-xs sm:text-sm mt-2 leading-relaxed">
+              As the leading choice for <strong className="text-royal-950 font-semibold">cabs in Tirupati</strong>, we operate premium, direct routes connecting the temple city with all primary locations across South India. Compare the travel details and reserve your yatra taxi below:
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            {/* Route Card 1 */}
+            <div className="bg-slate-50/55 p-5 rounded-2xl border border-slate-100/80 flex gap-4 items-start hover:shadow-md hover:border-amber-300/30 transition-all">
+              <div className="p-2.5 rounded-xl bg-orange-100 text-orange-600 shrink-0 font-bold text-xs font-mono font-sans">
+                01
+              </div>
+              <div className="space-y-1.5">
+                <h4 className="font-bold text-sm text-royal-950">Tirupati to Tirumala Cab Booking</h4>
+                <p className="text-xs text-slate-500 leading-relaxed">
+                  Fastest Alipiri Toll transit service with free baggage handling. Distance: 22 KM | Time: Approx. 50 mins. Recommended for VIP &amp; Special Darshan pilgrims.
+                </p>
+              </div>
+            </div>
+
+            {/* Route Card 2 */}
+            <div className="bg-slate-50/55 p-5 rounded-2xl border border-slate-100/80 flex gap-4 items-start hover:shadow-md hover:border-amber-300/30 transition-all">
+              <div className="p-2.5 rounded-xl bg-amber-100 text-amber-700 shrink-0 font-bold text-xs font-mono font-sans">
+                02
+              </div>
+              <div className="space-y-1.5">
+                <h4 className="font-bold text-sm text-royal-950">Renigunta Airport to Tirupati &amp; Tirumala</h4>
+                <p className="text-xs text-slate-500 leading-relaxed">
+                  Instant terminal pick-up with luggage space. Distance: 15 KM (Tirupati city) or 38 KM (Tirumala). We monitor flights for delays so your driver waits on-time.
+                </p>
+              </div>
+            </div>
+
+            {/* Route Card 3 */}
+            <div className="bg-slate-50/55 p-5 rounded-2xl border border-slate-100/80 flex gap-4 items-start hover:shadow-md hover:border-amber-300/30 transition-all">
+              <div className="p-2.5 rounded-xl bg-orange-100 text-orange-600 shrink-0 font-bold text-xs font-mono font-sans">
+                03
+              </div>
+              <div className="space-y-1.5">
+                <h4 className="font-bold text-sm text-royal-950">Tirupati to Srikalahasti Cab Service</h4>
+                <p className="text-xs text-slate-500 leading-relaxed">
+                  Best temple combo packages for Srikalahasteeswara Rahu Ketu Sarpa Dosha Puja. Distance: 38 KM | Time: Approx. 45 mins. Flexible schedules.
+                </p>
+              </div>
+            </div>
+
+            {/* Route Card 4 */}
+            <div className="bg-slate-50/55 p-5 rounded-2xl border border-slate-100/80 flex gap-4 items-start hover:shadow-md hover:border-amber-300/30 transition-all">
+              <div className="p-2.5 rounded-xl bg-amber-100 text-amber-700 shrink-0 font-bold text-xs font-mono font-sans">
+                04
+              </div>
+              <div className="space-y-1.5">
+                <h4 className="font-bold text-sm text-royal-950">Vellore Golden Temple Outstation Trip</h4>
+                <p className="text-xs text-slate-500 leading-relaxed">
+                  Relaxing scenic single-day outstation tour covering Sripuram Golden Temple. Distance: 110 KM | Time: 2.5 hours. Multi-lingual driver provided.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          {/* Localized FAQ/SEO Quick Summary box (The Content Checklist SEO block) */}
+          <div className="p-5 sm:p-6 bg-amber-500/5 rounded-2xl border border-amber-500/10 space-y-3.5 text-xs text-left">
+            <h4 className="font-bold text-royal-950 text-sm flex items-center gap-2">
+              <span className="w-2 h-2 rounded-full bg-amber-500 animate-pulse"></span>
+              Why Choose Sri Ganesha Travels for Car Rentals in Tirupati?
+            </h4>
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 text-slate-700">
+              <p className="leading-relaxed">
+                <strong>Certified Drivers:</strong> All vehicles are manned by courteous Tamil &amp; Telugu-speaking local professionals who have hundreds of hours of experience navigating the beautiful Alipiri-Tirumala Ghat roads.
+              </p>
+              <p className="leading-relaxed">
+                <strong>Fixed Transparent Tariff:</strong> Say goodbye to surprise pricing. The custom pre-calculated tariff quotes we generate cover driver beta and fuel charges automatically. Choose us for the <strong className="text-amber-950 font-semibold">best car rentals in Tirupati</strong>.
+              </p>
+              <p className="leading-relaxed">
+                <strong>Pristine Safe Fleet:</strong> Choose from clean, fully air-conditioned Swift Dzire sedans, premium 7-seater Innova Crysta SUVs, or spacious Force Tempo Travellers for larger spiritual yatra groups.
+              </p>
+            </div>
+          </div>
+        </div>
+
       </div>
     </section>
   );

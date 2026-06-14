@@ -41,14 +41,18 @@ export default function Hero({ onQuickBook }: HeroProps) {
           </div>
 
           <h1 className="font-display text-4xl sm:text-5xl lg:text-6xl font-extrabold text-white leading-tight">
-            Seamless &amp; Comfortable <br className="hidden sm:inline" />
+            Reliable &amp; Safe <br className="hidden sm:inline" />
             <span className="bg-gradient-to-r from-amber-400 via-orange-400 to-amber-300 bg-clip-text text-transparent">
-              Travels in Tirupati
+              Cabs in Tirupati
             </span>
           </h1>
 
-          <p className="text-gray-300 text-base sm:text-lg max-w-xl leading-relaxed">
-            Welcome to <strong className="text-white">Sri Ganesha Travels</strong>. Embark on a premium travel experience with our high-quality fleet, well-trained local drivers, and zero-hassle bookings. Specialized in Tirumala temple yatra and outstation rentals.
+          <h2 className="text-amber-200/90 text-sm sm:text-base font-medium max-w-xl leading-relaxed font-sans">
+            Sri Ganesha Travels — Best Car Rentals in Tirupati &amp; Hassle-Free <strong className="text-white font-semibold">Tirupati to Tirumala Cab Booking</strong> with Local Expert Guides.
+          </h2>
+
+          <p className="text-gray-300 text-xs sm:text-sm max-w-xl leading-relaxed">
+            Welcome to a premium, comfortable journey with Sri Ganesha Travels. Experience the most <strong className="text-white font-semibold">reliable taxi service in Tirupati</strong>, designed specifically for divine temple yatras, customized sightseeing, and swift railway or Renigunta Airport pick-ups.
           </p>
 
           {/* Quick Pillars Benefits */}
